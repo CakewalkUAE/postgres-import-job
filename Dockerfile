@@ -1,7 +1,8 @@
-FROM postgres:17-alpine
+FROM postgres:17
 WORKDIR /app
-RUN apk add --no-cache bash tzdata ca-certificates
-RUN apk add --no-cache pgcopydb
+
+RUN apt-get update && apt-get install -y pgcopydb
+
 COPY . .
 RUN chmod +x run.sh
 ENTRYPOINT ["./run.sh"]
